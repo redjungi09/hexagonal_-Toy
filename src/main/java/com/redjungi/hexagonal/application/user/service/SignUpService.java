@@ -5,6 +5,7 @@ import com.redjungi.hexagonal.application.user.port.in.SignUpUseCase;
 import com.redjungi.hexagonal.application.user.port.out.UserRepositoryPort;
 import com.redjungi.hexagonal.domain.user.entity.User;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Service;
 public class SignUpService implements SignUpUseCase {
 
     private final UserRepositoryPort userRepositoryPort;
+    public final PasswordEncoder passwordEncoder;
 
     @Override
     public SignUpData.Result execute(SignUpData.Command command) {
@@ -23,9 +25,11 @@ public class SignUpService implements SignUpUseCase {
             throw new RuntimeException("이미 사용 중인 이메일입니다.");
         }
 
+        String encoded = passwordEncoder.encode(command.password());
+
         User user = User.create(
                 command.username(),
-                command.password(),
+                encoded,
                 command.email()
         );
 

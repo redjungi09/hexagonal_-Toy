@@ -3,7 +3,9 @@ package com.redjungi.hexagonal.adapter.persistence.user;
 import com.redjungi.hexagonal.application.user.port.out.UserRepositoryPort;
 import com.redjungi.hexagonal.domain.user.entity.User;
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Component;
 
+@Component
 @RequiredArgsConstructor
 public class UserPersistenceAdapter implements UserRepositoryPort {
 

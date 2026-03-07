@@ -1,4 +1,4 @@
-package com.redjungi.hexagonal.infrastructure.config.security;
+package com.redjungi.hexagonal.infrastructure.config;
 
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.context.annotation.Bean;
